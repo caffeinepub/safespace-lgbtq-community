@@ -14,8 +14,11 @@ export default function MobileScaffold({ children }: MobileScaffoldProps) {
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 header-gradient-overlay" />
         <div className="relative z-10 h-full flex items-center justify-center">
-          <h1 className="text-2xl font-bold text-white drop-shadow-lg">SafeSpace</h1>
+          <h1 className="text-2xl font-display font-bold text-white drop-shadow-lg tracking-tight">
+            SafeSpace
+          </h1>
         </div>
       </header>
       <main className="flex-1 overflow-y-auto pb-20">

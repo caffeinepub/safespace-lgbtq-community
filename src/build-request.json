@@ -1,169 +1,100 @@
 {
   "kind": "build_request",
-  "title": "Add swipe-style mutual profile matching with a Matches screen that opens encrypted chat",
+  "title": "UI refresh with colorful gradient theme + mobile wrapper branding assets (Android/iOS)",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-17",
-      "text": "Implement backend storage and APIs for swipe-style profile matching with mutual approval: allow a signed-in user to like or pass another user, detect mutual likes as a match, and return the user’s current matches list.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-12",
-          "msg-13",
-          "msg-14",
-          "msg-16"
-        ],
-        "quotes": [
-          "Swipe -sttle matching flow",
-          "Yes should a match br mutual both users must approve before chat opens",
-          "Matches screen",
-          "Please build it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend exposes an update method to submit a swipe action (like/pass) for a target profile.",
-        "Backend records enough data to determine when two users have mutually liked each other.",
-        "Backend exposes a query method to return the caller’s matches list.",
-        "All backend methods enforce privacy/anonymity by default (no public listing of principals or identifying metadata beyond what is already in the user profile model)."
-      ]
-    },
-    {
-      "id": "REQ-18",
-      "text": "Implement backend APIs to fetch swipe candidates for matching, excluding the caller and excluding profiles that have hideProfile enabled, and excluding users already swiped by the caller.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-12",
-          "msg-16"
-        ],
-        "quotes": [
-          "Swipe -sttle matching flow",
-          "Please build it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend provides a query method that returns a paginated/limited list of candidate profiles for the caller to swipe on.",
-        "Candidates do not include the caller.",
-        "Candidates do not include users whose profile has hideProfile = true.",
-        "Candidates do not include users the caller has already liked or passed."
-      ]
-    },
-    {
-      "id": "REQ-19",
-      "text": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+      "id": "REQ-24",
+      "text": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-14",
-          "msg-16"
+          "msg-1"
         ],
         "quotes": [
-          "Matches screen",
-          "Please build it"
+          "just refreshed colors/fonts/buttons while keeping the current layout",
+          "Colourfull gardient"
         ]
       },
       "acceptanceCriteria": [
-        "A new route exists for Matches (for example, /matches) and renders inside the existing MobileScaffold.",
-        "The Matches screen shows loading/empty/error states using English UI copy.",
-        "The Matches screen renders a list of matches returned by the backend, showing only non-identifying profile fields already collected by the app (e.g., pseudonym/pronouns if present).",
-        "Each match row has an “Open chat” action that navigates to the existing private/encrypted chat UI entry point (or a stub screen if the chat UI route is not currently wired)."
+        "All existing routes continue to render with the same structure and navigation behavior (no layout reworks, no route changes).",
+        "Global theme tokens (CSS variables) are updated to reflect a colorful gradient-forward palette while maintaining readability/contrast in both light and dark mode.",
+        "Buttons (including primary and outline variants) visually reflect the new style (e.g., gradient primary, improved hover/active/focus states) without breaking Shadcn component usage.",
+        "All user-facing text introduced or changed remains in English."
       ]
     },
     {
-      "id": "REQ-20",
-      "text": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+      "id": "REQ-25",
+      "text": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-12",
-          "msg-16"
+          "msg-1"
         ],
         "quotes": [
-          "Swipe -sttle matching flow",
-          "Please build it"
+          "Yes change the ui and make it attractive and creative"
         ]
       },
       "acceptanceCriteria": [
-        "A new route exists for swipe matching (for example, /matches/swipe) and renders inside the existing MobileScaffold.",
-        "The swipe UI supports Like and Pass actions (buttons are acceptable; gesture swipe is optional).",
-        "On Like/Pass, the frontend calls the corresponding backend mutation and then displays the next candidate.",
-        "If there are no more candidates, the screen shows an English empty state and a link/button to view Matches."
+        "The MobileScaffold header remains the same size/structure but visually aligns with the new gradient theme.",
+        "Bottom navigation active tab styling is updated to match the new primary/gradient style while keeping tab labels and icons unchanged.",
+        "No principals or identifying metadata are introduced into the UI as part of styling changes."
       ]
     },
     {
-      "id": "REQ-21",
-      "text": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
+      "id": "REQ-26",
+      "text": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-8",
-          "msg-14",
-          "msg-16"
+          "msg-1"
         ],
         "quotes": [
-          "I can't find it",
-          "Matches screen",
-          "Please build it"
+          "Yes app icon spalash screen",
+          "Simple default designs"
         ]
       },
       "acceptanceCriteria": [
-        "The Profile screen includes a clear navigation control labeled “Matches” that routes to the Matches screen.",
-        "The Matches screen includes a clear navigation control labeled “Find matches” (or equivalent) that routes to the swipe matching screen.",
-        "No changes are required to the existing bottom navigation tab set unless necessary; if a new tab is added, it must be labeled in English and remain mobile-friendly."
+        "New image assets are generated according to the filenames/dimensions listed in imageRequirements.required.",
+        "Assets are purely visual (no sensitive/identifying content) and match a colorful gradient style that fits the app’s existing inclusive theme."
       ]
     },
     {
-      "id": "REQ-22",
-      "text": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+      "id": "REQ-27",
+      "text": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-16"
+          "msg-1"
         ],
         "quotes": [
-          "Please build it"
+          "Yes I want android apk and for i phone also"
         ]
       },
       "acceptanceCriteria": [
-        "Frontend has dedicated React Query hooks for: fetching candidates, submitting a swipe action, and fetching matches.",
-        "After a swipe that results in a new mutual match, the Matches query is invalidated/refetched so the new match appears without a full reload.",
-        "Hooks follow the existing patterns in frontend/src/hooks/useQueries.ts (enabled guards when actor is unavailable, standard loading/error handling)."
-      ]
-    },
-    {
-      "id": "REQ-23",
-      "text": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-16"
-        ],
-        "quotes": [
-          "Please build it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "No principal values are rendered in any matching/matches UI (including debug output).",
-        "All new user-facing UI text for matching/matches and chat entry points is in English.",
-        "Backend responses used by these screens do not require exposing principals to the frontend beyond what is necessary for internal linking (if an internal identifier is needed, it must not be directly displayed)."
+        "The generated images are present under frontend/public/assets/generated and can be referenced by static path at runtime.",
+        "A short, English README (or equivalent doc file) is added to the repo describing how to apply the icon and splash assets when creating Android/iOS web-view wrapper builds (including which filenames to use).",
+        "No backend changes are required for the branding asset work."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single-actor Motoko canister with all logic in backend/main.mo; add backend/migration.mo only if an upgrade requires state migration.",
-    "Do not edit frontend paths marked immutable by the platform: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and anything under frontend/src/components/ui.",
-    "Keep navigation and screens mobile-first and consistent with the existing MobileScaffold layout.",
-    "Do not introduce third-party authentication; only Internet Identity is supported."
+    "Do not edit files under frontend/src/components/ui (compose existing UI components instead).",
+    "Do not edit any frontend immutable paths listed in SYSTEM_CONTEXT (e.g., frontend/src/hooks/useInternetIdentity.ts(x), frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
+    "Keep the current layout and navigation structure; only refresh styling (colors/fonts/buttons).",
+    "Keep all user-facing text in English."
   ],
   "nonGoals": [
-    "Implementing or integrating external messaging services, WebSockets, or real-time chat delivery.",
-    "Adding GPS/location-based matching or map features.",
-    "Adding third-party identity providers or wallet integrations.",
-    "Redesigning existing Confessions/Discussions/Resources/Events functionality beyond adding entry points to matching/matches."
+    "Implementing new app features beyond UI styling refresh and branding assets.",
+    "Publishing to Google Play Store or Apple App Store.",
+    "Adding third-party authentication (only Internet Identity is supported).",
+    "Changing backend data models or running state migrations solely for styling/branding changes."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Mobile app icon, colorful gradient with a clean abstract mark (app-icon.dim_1024x1024.png)",
+      "Mobile splash screen, colorful gradient background with subtle abstract shapes (splash-screen.dim_2732x2732.png)"
+    ],
     "edits": []
   },
   "userProfileUpdate": {

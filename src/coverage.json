@@ -1,116 +1,90 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T08:28:35.569Z",
+  "generatedAt": "2026-02-11T10:29:21.125Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 7,
-    "implemented": 5,
+    "total": 4,
+    "implemented": 4,
     "items": [
       {
-        "id": "REQ-17",
-        "summary": "Implement backend storage and APIs for swipe-style profile matching with mutual approval: allow a signed-in user to like or pass another user, detect mutual likes as a match, and return the user’s current matches list.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-18",
-        "summary": "Implement backend APIs to fetch swipe candidates for matching, excluding the caller and excluding profiles that have hideProfile enabled, and excluding users already swiped by the caller.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-19",
-        "summary": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+        "id": "REQ-24",
+        "summary": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/matches/Matches.tsx",
-          "frontend/src/pages/chat/EncryptedChatEntry.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/src/pages/matches/Matches.tsx",
-          "frontend/src/pages/chat/EncryptedChatEntry.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/index.html"
         ]
       },
       {
-        "id": "REQ-20",
-        "summary": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+        "id": "REQ-25",
+        "summary": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/matches/SwipeMatching.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/layout/MobileScaffold.tsx",
+          "frontend/src/components/layout/BottomNav.tsx",
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/pages/matches/SwipeMatching.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/layout/MobileScaffold.tsx",
+          "frontend/src/components/layout/BottomNav.tsx",
+          "frontend/src/index.css"
         ]
       },
       {
-        "id": "REQ-21",
-        "summary": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
+        "id": "REQ-26",
+        "summary": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/profile/Profile.tsx",
-          "frontend/src/pages/matches/Matches.tsx"
+          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
+          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
         ],
         "matchedFiles": [
-          "frontend/src/pages/profile/Profile.tsx",
-          "frontend/src/pages/matches/Matches.tsx"
+          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
+          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
         ]
       },
       {
-        "id": "REQ-22",
-        "summary": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+        "id": "REQ-27",
+        "summary": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/backend.d.ts"
+          "frontend/README-mobile-wrapper-branding.md",
+          "frontend/index.html",
+          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
+          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
         ],
         "matchedFiles": [
-          "frontend/src/hooks/useQueries.ts",
-          "frontend/src/backend.d.ts"
-        ]
-      },
-      {
-        "id": "REQ-23",
-        "summary": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/matches/Matches.tsx",
-          "frontend/src/pages/matches/SwipeMatching.tsx",
-          "frontend/src/pages/chat/EncryptedChatEntry.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/matches/Matches.tsx",
-          "frontend/src/pages/matches/SwipeMatching.tsx",
-          "frontend/src/pages/chat/EncryptedChatEntry.tsx"
+          "frontend/README-mobile-wrapper-branding.md",
+          "frontend/index.html",
+          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
+          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/pages/chat/EncryptedChatEntry.tsx",
-    "frontend/src/pages/matches/Matches.tsx",
-    "frontend/src/pages/matches/SwipeMatching.tsx",
-    "frontend/src/pages/profile/Profile.tsx",
+    "frontend/README-mobile-wrapper-branding.md",
+    "frontend/index.html",
+    "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
+    "frontend/public/assets/generated/splash-screen.dim_2732x2732.png",
+    "frontend/src/components/layout/BottomNav.tsx",
+    "frontend/src/components/layout/MobileScaffold.tsx",
+    "frontend/src/index.css",
+    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

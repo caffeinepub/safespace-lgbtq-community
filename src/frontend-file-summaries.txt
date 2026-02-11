@@ -2,8 +2,8 @@
   "frontend/src/App.tsx": "Main application component with TanStack Router setup, compliance gate, Quick Tour onboarding flow, and all route definitions including new matching routes (/matches, /matches/swipe, /chat/$matchId).",
   "frontend/src/hooks/useComplianceGate.ts": "Custom hook managing 18+ compliance gate state using localStorage persistence.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including confessions, user profiles, moderation, admin checks, and new matching functionality (fetch candidates, record swipes, get matches).",
-  "frontend/src/components/layout/MobileScaffold.tsx": "Mobile-first layout wrapper with header background image and bottom navigation spacing.",
-  "frontend/src/components/layout/BottomNav.tsx": "Persistent bottom navigation bar with five main tabs and active state highlighting.",
+  "frontend/src/components/layout/MobileScaffold.tsx": "Mobile-first layout wrapper with gradient overlay on header background image, Poppins font for title, and bottom navigation spacing.",
+  "frontend/src/components/layout/BottomNav.tsx": "Persistent bottom navigation bar with gradient-based active tab indicator, enhanced hover states, and smooth transitions.",
   "frontend/src/pages/OnboardingGate.tsx": "18+ compliance and safety onboarding screen with checkboxes and welcoming design.",
   "frontend/src/pages/confessions/ConfessionsFeed.tsx": "Main confession wall displaying approved confessions chronologically with empty states.",
   "frontend/src/pages/confessions/NewConfession.tsx": "Form for submitting new anonymous confessions with moderation notice.",
@@ -24,11 +24,13 @@
   "frontend/src/components/auth/AccessDenied.tsx": "Access denied screen shown to non-admin users attempting to access protected areas.",
   "frontend/src/components/auth/LoginButton.tsx": "Reusable Internet Identity login/logout button with loading states.",
   "frontend/src/utils/privacy.ts": "Privacy utility functions for anonymous labels, timestamp formatting, and principal redaction.",
-  "frontend/src/index.css": "Global styles with OKLCH color system featuring calm purple/violet tones with subtle rainbow accents for light and dark modes.",
-  "frontend/tailwind.config.js": "Tailwind configuration with extended color tokens, border radius, and shadow utilities for the SafeSpace design system.",
+  "frontend/src/index.css": "Global styles with vibrant gradient-forward OKLCH color system (magenta-pink, cyan, purple), custom Poppins/Inter fonts, gradient button components, header overlay, and active tab styling for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Poppins/Inter font families, gradient color tokens, enhanced border radius variants, glow shadows, and gradient animation utilities.",
   "frontend/src/hooks/useQuickTour.ts": "Custom hook managing Quick Tour completion state using localStorage with separate key from compliance gate.",
   "frontend/src/components/onboarding/QuickTour.tsx": "Multi-step Quick Tour component with three sections covering privacy/anonymity, bottom navigation, and reporting, with primary \"Start exploring\" and secondary \"Skip\" actions.",
   "frontend/src/pages/matches/Matches.tsx": "Matches screen displaying mutual matches list with \"Open chat\" actions and navigation to swipe matching flow, includes loading/empty/error states.",
   "frontend/src/pages/matches/SwipeMatching.tsx": "Swipe-style matching screen showing one candidate at a time with Like/Pass buttons, handles mutual match detection and toast notifications.",
-  "frontend/src/pages/chat/EncryptedChatEntry.tsx": "Stub encrypted chat entry screen that accepts match identifier via route params and displays coming soon message with encrypted chat context."
+  "frontend/src/pages/chat/EncryptedChatEntry.tsx": "Stub encrypted chat entry screen that accepts match identifier via route params and displays coming soon message with encrypted chat context.",
+  "frontend/index.html": "HTML entry point with app icon favicon/apple-touch-icon references and Google Fonts preconnect for Poppins and Inter.",
+  "frontend/README-mobile-wrapper-branding.md": "Documentation explaining how to use the generated app icon and splash screen assets when packaging SafeSpace as Android APK or iOS IPA web-view wrapper applications."
 }

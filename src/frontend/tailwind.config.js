@@ -15,6 +15,10 @@ export default {
             }
         },
         extend: {
+            fontFamily: {
+                sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                display: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+            },
             colors: {
                 border: 'oklch(var(--border))',
                 input: 'oklch(var(--input))',
@@ -55,16 +59,25 @@ export default {
                     3: 'oklch(var(--chart-3))',
                     4: 'oklch(var(--chart-4))',
                     5: 'oklch(var(--chart-5))'
+                },
+                gradient: {
+                    start: 'oklch(var(--gradient-start))',
+                    mid: 'oklch(var(--gradient-mid))',
+                    end: 'oklch(var(--gradient-end))'
                 }
             },
             borderRadius: {
                 lg: 'var(--radius)',
                 md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)'
+                sm: 'calc(var(--radius) - 4px)',
+                xl: 'calc(var(--radius) + 4px)',
+                '2xl': 'calc(var(--radius) + 8px)',
             },
             boxShadow: {
                 xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-                soft: '0 2px 8px -2px rgba(0,0,0,0.1)'
+                soft: '0 2px 8px -2px rgba(0,0,0,0.1)',
+                glow: '0 0 20px -5px oklch(var(--primary) / 0.4)',
+                'glow-lg': '0 0 30px -5px oklch(var(--primary) / 0.5)',
             },
             keyframes: {
                 'accordion-down': {
@@ -74,11 +87,24 @@ export default {
                 'accordion-up': {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' }
+                },
+                'gradient-shift': {
+                    '0%, 100%': { backgroundPosition: '0% 50%' },
+                    '50%': { backgroundPosition: '100% 50%' }
+                },
+                'pulse-glow': {
+                    '0%, 100%': { opacity: '1' },
+                    '50%': { opacity: '0.6' }
                 }
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
-                'accordion-up': 'accordion-up 0.2s ease-out'
+                'accordion-up': 'accordion-up 0.2s ease-out',
+                'gradient-shift': 'gradient-shift 3s ease infinite',
+                'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
+            },
+            backgroundSize: {
+                '200': '200% 200%',
             }
         }
     },

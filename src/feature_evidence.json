@@ -2,12 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-new-matches-screen-route-in-the-frontend-that-lists-the-user-s-mutual-matches-and-provides-an-open-chat-action-for-each-match",
-      "featureTitle": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+      "featureId": "feature-refresh-the-existing-app-ui-styling-colors-fonts-and-button-styling-to-a-colorful-gradient-look-while-keeping-all-current-screen-layouts-and-routes-unchanged",
+      "featureTitle": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/chat/EncryptedChatEntry.tsx",
-        "frontend/src/pages/matches/Matches.tsx"
+        "frontend/index.html",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,16 +18,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-19"
+        "REQ-24"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-swipe-style-matching-screen-route-in-the-frontend-that-displays-swipe-candidates-one-at-a-time-and-lets-the-user-like-or-pass-submitting-each-action-to-the-backend-and-advancing-to-the-next-candidate",
-      "featureTitle": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+      "featureId": "feature-apply-the-refreshed-gradient-styling-consistently-across-shared-layout-elements-including-the-header-area-in-mobilescaffold-and-the-bottomnav-active-state-styling-without-changing-their-layout-structure",
+      "featureTitle": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/matches/SwipeMatching.tsx"
+        "frontend/src/components/layout/BottomNav.tsx",
+        "frontend/src/components/layout/MobileScaffold.tsx",
+        "frontend/src/index.css"
       ],
       "components": [
         "authorization@4.0.0",
@@ -38,17 +39,14 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-20"
+        "REQ-25"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-discoverable-navigation-to-the-matching-flow-and-matches-screen-so-users-can-find-the-encrypted-chat-entry-point-from-within-the-existing-app-ui",
-      "featureTitle": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
-      "files": [
-        "frontend/src/pages/matches/Matches.tsx",
-        "frontend/src/pages/profile/Profile.tsx"
-      ],
+      "featureId": "feature-create-simple-default-mobile-branding-assets-for-a-web-view-wrapper-app-an-app-icon-and-splash-screen-designs-suitable-for-android-and-ios",
+      "featureTitle": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
+      "files": [],
       "components": [
         "authorization@4.0.0",
         "core-infrastructure@1.0.2",
@@ -58,15 +56,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-21"
+        "REQ-26"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-react-query-hooks-for-the-new-matching-and-matches-backend-apis-and-ensure-queries-mutations-invalidate-and-refresh-the-matches-list-appropriately-after-a-mutual-match-is-created",
-      "featureTitle": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+      "featureId": "feature-add-the-newly-generated-mobile-branding-images-to-the-frontend-as-static-assets-under-frontend-public-assets-generated-and-document-in-repo-how-they-should-be-used-for-android-apk-and-ios-ipa-web-view-wrapper-packaging",
+      "featureTitle": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
       "files": [
-        "frontend/src/hooks/useQueries.ts"
+        "frontend/README-mobile-wrapper-branding.md",
+        "frontend/index.html"
       ],
       "components": [
         "authorization@4.0.0",
@@ -77,28 +76,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-22"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-all-new-matching-and-matches-ui-and-data-flows-do-not-reveal-internet-identity-principals-in-the-ui-and-keep-user-facing-text-in-english",
-      "featureTitle": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
-      "files": [
-        "frontend/src/pages/chat/EncryptedChatEntry.tsx",
-        "frontend/src/pages/matches/Matches.tsx",
-        "frontend/src/pages/matches/SwipeMatching.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-23"
+        "REQ-27"
       ],
       "confidence": "high"
     }

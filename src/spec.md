@@ -1,15 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add swipe-style mutual profile matching, a Matches list, and a clear path to open the existing encrypted chat only after two users mutually like each other.
+**Goal:** Refresh the app UI with a colorful gradient-forward theme while keeping all existing layouts/routes unchanged, and add simple mobile wrapper branding assets (icon + splash) with usage documentation for Android/iOS packaging.
 
 **Planned changes:**
-- Add backend storage and APIs to submit swipe actions (like/pass), compute mutual matches, and fetch the signed-in user’s matches list with privacy/anonymity preserved.
-- Add a backend API to fetch swipe candidates, excluding the caller, profiles with `hideProfile = true`, and profiles already swiped by the caller.
-- Add a mobile-first Swipe Matching route (e.g., `/matches/swipe`) to view candidates one at a time and Like/Pass, with an empty state that links to Matches when no candidates remain.
-- Add a Matches route (e.g., `/matches`) inside `MobileScaffold` that lists mutual matches with loading/empty/error states and an “Open chat” action per match (navigating to the existing encrypted chat entry point or a stub if needed).
-- Add navigation entry points: a “Matches” control on the Profile screen and a “Find matches” control on the Matches screen to reach the swipe flow.
-- Add React Query hooks for candidates, submitting swipes, and fetching matches; invalidate/refetch Matches after a swipe creates a new mutual match.
-- Ensure principals are never shown in matching/matches UI and all new user-facing copy is in English.
+- Update global theme styling (colors, fonts, CSS variables) to a colorful gradient look with readable contrast in both light and dark mode, without changing any screen layouts or routes.
+- Restyle buttons (primary and outline variants) to match the new gradient theme, including hover/active/focus states, while continuing to use existing Shadcn components (no edits inside `frontend/src/components/ui`).
+- Apply the refreshed styling consistently to shared layout elements (MobileScaffold header visuals and BottomNav active-state styling) without changing their structure, labels, or icons.
+- Generate and add default mobile branding images (app icon and splash screen) under `frontend/public/assets/generated`.
+- Add a short in-repo English doc describing how to use the generated icon and splash assets when building Android (APK) and iOS (IPA) web-view wrappers.
 
-**User-visible outcome:** Users can discover the matching feature, swipe through candidate profiles with Like/Pass, see a list of mutual matches, and open an encrypted chat only with matched users.
+**User-visible outcome:** The app retains the same navigation and screens but has a more attractive colorful gradient UI, plus included default icon and splash assets with guidance for Android/iOS web-view wrapper builds.
