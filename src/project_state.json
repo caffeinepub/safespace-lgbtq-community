@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "MVP expanded to include private encrypted chat accessed via a swipe-style mutual matching flow, with a dedicated Matches screen for starting chats, while continuing to prioritize privacy/anonymity and safety moderation.",
+  "architectural_notes": [
+    "Prioritize user privacy/anonymity and safety across all features (minimal data collection, anonymous posting defaults where applicable).",
+    "Include moderation/reporting workflows for user-generated content (confessions and discussion rooms).",
+    "Design must support Play Store compliance considerations for 18+ content.",
+    "Encrypted/private chat must be accessible via a dedicated UI entry point (Matches screen) and only unlocked after a mutual match.",
+    "Mutual matching workflow: likes/swipes are stored as intents; chat is created/unlocked only when both users approve (match)."
+  ],
+  "known_issues": [
+    "Encrypted chat option exists but is not currently discoverable in the live UI due to missing navigation/Matches entry point."
+  ],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-mobile-first-navigation-flow-that-provides-easy-access-to-the-five-core-areas-confessions-discussions-resources-events-and-profile-settings-using-a-bottom-navigation-layout-and-responsive-screens-suitable-for-testing-on-mobile-devices",
+      "title": "Create a mobile-first navigation flow that provides easy access to the five core areas: Confessions, Discussions, Resources, Events, and Profile/Settings, using a bottom navigation layout and responsive screens suitable for testing on mobile devices.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-18-compliance-gate-and-safety-onboarding-for-first-time-users-including-a-content-warning-and-confirmation-before-entering-the-app-with-user-facing-text-in-english",
+      "title": "Implement an 18+ compliance gate and safety onboarding for first-time users, including a content warning and confirmation before entering the app, with user-facing text in English.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-anonymous-confession-wall-mvp-create-confession-posting-a-chronological-feed-latest-first-and-per-confession-reporting-with-a-moderation-workflow-that-prevents-unapproved-content-from-appearing-publicly",
+      "title": "Build the Anonymous Confession Wall MVP: create confession posting, a chronological feed (latest first), and per-confession reporting, with a moderation workflow that prevents unapproved content from appearing publicly.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-moderator-admin-review-experience-for-confessions-and-discussion-content-moderators-can-view-pending-items-and-reported-items-approve-reject-hide-content-and-optionally-add-a-moderation-note",
+      "title": "Build a moderator/admin review experience for confessions and discussion content: moderators can view pending items and reported items, approve/reject/hide content, and optionally add a moderation note.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-mental-health-resources-directory-categorized-list-helplines-therapists-self-care-online-support-with-title-description-and-contact-link-plus-search-filter-functionality",
+      "title": "Implement the Mental Health Resources directory: categorized list (Helplines, Therapists, Self-care, Online support) with title, description, and contact link, plus search/filter functionality.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-community-discussion-rooms-as-anonymous-threads-with-posts-replies-timestamps-and-tags-categories-dating-advice-coming-out-friendship-mental-health-including-reporting-and-moderation",
+      "title": "Implement Community Discussion Rooms as anonymous threads with posts/replies, timestamps, and tags/categories (Dating Advice, Coming Out, Friendship, Mental Health), including reporting and moderation.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-events-section-list-upcoming-events-with-title-date-time-online-offline-type-location-if-offline-description-rsvp-button-and-filter-by-online-offline-allow-admins-moderators-to-create-events",
+      "title": "Implement Events section: list upcoming events with title, date/time, online/offline type, location (if offline), description, RSVP button, and filter by online/offline; allow admins/moderators to create events.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-profile-settings-pseudonym-pronouns-interests-and-privacy-controls-hide-profile-disable-location-anonymous-posting-plus-notification-preferences-and-help-support-links",
+      "title": "Implement Profile & Settings: pseudonym, pronouns, interests, and privacy controls (hide profile, disable location, anonymous posting), plus notification preferences and Help/Support links.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enforce-privacy-anonymity-by-default-across-the-mvp-store-minimal-user-data-avoid-collecting-location-in-mvp-and-ensure-public-content-does-not-expose-principals-or-identifying-metadata-in-the-ui",
+      "title": "Enforce privacy/anonymity-by-default across the MVP: store minimal user data, avoid collecting location in MVP, and ensure public content does not expose principals or identifying metadata in the UI.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-clean-friendly-inclusive-visual-theme-with-rainbow-themed-accents-not-dominant-safe-supportive-tone-and-consistent-ui-patterns-across-all-screens-ensure-all-user-facing-text-is-in-english",
+      "title": "Apply a clean, friendly, inclusive visual theme with rainbow-themed accents (not dominant), safe/supportive tone, and consistent UI patterns across all screens; ensure all user-facing text is in English.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-mvp-screens-ui-routes-for-onboarding-18-gate-confessions-feed-new-confession-discussions-thread-list-filters-thread-detail-posts-reply-new-thread-resources-list-search-category-filter-events-list-filter-event-detail-profile-settings-help-support-and-moderator-dashboard-pending-reported-queues",
+      "title": "Create the MVP screens (UI routes) for: Onboarding/18+ Gate, Confessions Feed, New Confession, Discussions (thread list + filters), Thread Detail (posts + reply), New Thread, Resources (list + search + category filter), Events (list + filter), Event Detail, Profile, Settings, Help/Support, and Moderator Dashboard (pending/reported queues).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-lightweight-first-time-quick-tour-onboarding-flow-that-appears-only-after-the-user-has-passed-the-existing-compliance-gate-and-before-they-start-using-the-main-app-screens-with-clear-english-copy-explaining-1-anonymity-privacy-by-default-2-how-to-navigate-using-the-bottom-tabs-and-3-how-to-report-harmful-content",
+      "title": "Add a lightweight first-time “Quick Tour” onboarding flow that appears only after the user has passed the existing compliance gate and before they start using the main app screens, with clear English copy explaining (1) anonymity/privacy by default, (2) how to navigate using the bottom tabs, and (3) how to report harmful content.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-quick-tour-completion-locally-so-it-is-shown-only-once-per-browser-device-without-changing-backend-state-and-ensure-the-main-app-renders-normally-once-the-tour-is-completed-or-skipped",
+      "title": "Persist Quick Tour completion locally so it is shown only once per browser/device, without changing backend state, and ensure the main app renders normally once the tour is completed or skipped.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-settings-control-that-allows-the-user-to-re-view-the-quick-tour-or-reset-its-completion-flag-without-resetting-the-existing-compliance-acceptance",
+      "title": "Add a Settings control that allows the user to re-view the Quick Tour (or reset its completion flag) without resetting the existing compliance acceptance.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-matches-screen-route-in-the-frontend-that-lists-the-user-s-mutual-matches-and-provides-an-open-chat-action-for-each-match",
+      "title": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-swipe-style-matching-screen-route-in-the-frontend-that-displays-swipe-candidates-one-at-a-time-and-lets-the-user-like-or-pass-submitting-each-action-to-the-backend-and-advancing-to-the-next-candidate",
+      "title": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-discoverable-navigation-to-the-matching-flow-and-matches-screen-so-users-can-find-the-encrypted-chat-entry-point-from-within-the-existing-app-ui",
+      "title": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-hooks-for-the-new-matching-and-matches-backend-apis-and-ensure-queries-mutations-invalidate-and-refresh-the-matches-list-appropriately-after-a-mutual-match-is-created",
+      "title": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-new-matching-and-matches-ui-and-data-flows-do-not-reveal-internet-identity-principals-in-the-ui-and-keep-user-facing-text-in-english",
+      "title": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Anonymous Confession Wall: anonymous posting, chronological feed, report button, and moderation workflow to hide/approve content before public display",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Mental Health Resources: categorized resource list (Helplines, Therapists, Self-care, Online support) with title/description/link and search/filter",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Community Discussion Rooms: anonymous threads with posts/replies and timestamps, categories/tags, and moderation for inappropriate content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Events Section: upcoming online/offline events with details, RSVP, filtering by online/offline, and admin/moderator event creation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Profile & Settings: pseudonym, pronouns, interests, privacy controls (hide profile, disable location, anonymous posting), notification preferences, and help/support links",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "MVP UX deliverables: define app screens, data structure/models, and navigation flow for mobile testing; inclusive rainbow-accented UI and safe/supportive tone",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Compliance & safety: ensure privacy/anonymity/safety and Play Store compliance for 18+ content including reporting/moderation support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Define and implement MVP data structures in the Motoko backend for: Confession, Report, ModerationAction, Resource, Thread, Post, Event, RSVP, and UserSettings (including pronouns/interests/privacy toggles), and expose query/update methods needed by the frontend screens.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Implement role-based access control for moderator/admin capabilities (moderation queues, approving/hiding content, adding resources, adding events), using Internet Identity principals and a backend-maintained allowlist for moderator/admin principals.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add a simple first-time user onboarding flow to make initial app use smoother (post-deploy enhancement)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Add swipe-style profile matching with mutual approval requirement, plus a Matches screen that lists matches and opens the private encrypted chat UI.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Implement backend storage and APIs for swipe-style profile matching with mutual approval: allow a signed-in user to like or pass another user, detect mutual likes as a match, and return the user’s current matches list.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Implement backend APIs to fetch swipe candidates for matching, excluding the caller and excluding profiles that have hideProfile enabled, and excluding users already swiped by the caller.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "SafeSpace LGBTQ Community",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,179 @@
+{
+  "kind": "build_request",
+  "title": "Add swipe-style mutual profile matching with a Matches screen that opens encrypted chat",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-17",
+      "text": "Implement backend storage and APIs for swipe-style profile matching with mutual approval: allow a signed-in user to like or pass another user, detect mutual likes as a match, and return the user’s current matches list.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-12",
+          "msg-13",
+          "msg-14",
+          "msg-16"
+        ],
+        "quotes": [
+          "Swipe -sttle matching flow",
+          "Yes should a match br mutual both users must approve before chat opens",
+          "Matches screen",
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes an update method to submit a swipe action (like/pass) for a target profile.",
+        "Backend records enough data to determine when two users have mutually liked each other.",
+        "Backend exposes a query method to return the caller’s matches list.",
+        "All backend methods enforce privacy/anonymity by default (no public listing of principals or identifying metadata beyond what is already in the user profile model)."
+      ]
+    },
+    {
+      "id": "REQ-18",
+      "text": "Implement backend APIs to fetch swipe candidates for matching, excluding the caller and excluding profiles that have hideProfile enabled, and excluding users already swiped by the caller.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-12",
+          "msg-16"
+        ],
+        "quotes": [
+          "Swipe -sttle matching flow",
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend provides a query method that returns a paginated/limited list of candidate profiles for the caller to swipe on.",
+        "Candidates do not include the caller.",
+        "Candidates do not include users whose profile has hideProfile = true.",
+        "Candidates do not include users the caller has already liked or passed."
+      ]
+    },
+    {
+      "id": "REQ-19",
+      "text": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14",
+          "msg-16"
+        ],
+        "quotes": [
+          "Matches screen",
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new route exists for Matches (for example, /matches) and renders inside the existing MobileScaffold.",
+        "The Matches screen shows loading/empty/error states using English UI copy.",
+        "The Matches screen renders a list of matches returned by the backend, showing only non-identifying profile fields already collected by the app (e.g., pseudonym/pronouns if present).",
+        "Each match row has an “Open chat” action that navigates to the existing private/encrypted chat UI entry point (or a stub screen if the chat UI route is not currently wired)."
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "text": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-12",
+          "msg-16"
+        ],
+        "quotes": [
+          "Swipe -sttle matching flow",
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new route exists for swipe matching (for example, /matches/swipe) and renders inside the existing MobileScaffold.",
+        "The swipe UI supports Like and Pass actions (buttons are acceptable; gesture swipe is optional).",
+        "On Like/Pass, the frontend calls the corresponding backend mutation and then displays the next candidate.",
+        "If there are no more candidates, the screen shows an English empty state and a link/button to view Matches."
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "text": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8",
+          "msg-14",
+          "msg-16"
+        ],
+        "quotes": [
+          "I can't find it",
+          "Matches screen",
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The Profile screen includes a clear navigation control labeled “Matches” that routes to the Matches screen.",
+        "The Matches screen includes a clear navigation control labeled “Find matches” (or equivalent) that routes to the swipe matching screen.",
+        "No changes are required to the existing bottom navigation tab set unless necessary; if a new tab is added, it must be labeled in English and remain mobile-friendly."
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "text": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-16"
+        ],
+        "quotes": [
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend has dedicated React Query hooks for: fetching candidates, submitting a swipe action, and fetching matches.",
+        "After a swipe that results in a new mutual match, the Matches query is invalidated/refetched so the new match appears without a full reload.",
+        "Hooks follow the existing patterns in frontend/src/hooks/useQueries.ts (enabled guards when actor is unavailable, standard loading/error handling)."
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "text": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-16"
+        ],
+        "quotes": [
+          "Please build it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No principal values are rendered in any matching/matches UI (including debug output).",
+        "All new user-facing UI text for matching/matches and chat entry points is in English.",
+        "Backend responses used by these screens do not require exposing principals to the frontend beyond what is necessary for internal linking (if an internal identifier is needed, it must not be directly displayed)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single-actor Motoko canister with all logic in backend/main.mo; add backend/migration.mo only if an upgrade requires state migration.",
+    "Do not edit frontend paths marked immutable by the platform: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and anything under frontend/src/components/ui.",
+    "Keep navigation and screens mobile-first and consistent with the existing MobileScaffold layout.",
+    "Do not introduce third-party authentication; only Internet Identity is supported."
+  ],
+  "nonGoals": [
+    "Implementing or integrating external messaging services, WebSockets, or real-time chat delivery.",
+    "Adding GPS/location-based matching or map features.",
+    "Adding third-party identity providers or wallet integrations.",
+    "Redesigning existing Confessions/Discussions/Resources/Events functionality beyond adding entry points to matching/matches."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

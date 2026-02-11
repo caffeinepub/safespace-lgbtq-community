@@ -1,0 +1,124 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Swipe-style matching with Matches list and encrypted chat entry (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-19",
+      "summary": "Add a Matches screen that lists mutual matches and provides an “Open chat” action.",
+      "acceptanceCriteria": [
+        "A new route exists for Matches (for example, /matches) and renders inside the existing MobileScaffold.",
+        "The Matches screen shows loading/empty/error states using English UI copy.",
+        "The Matches screen renders a list of matches returned by the backend, showing only non-identifying profile fields already collected by the app (e.g., pseudonym/pronouns if present).",
+        "Each match row has an “Open chat” action that navigates to the existing private/encrypted chat UI entry point (or a stub screen if the chat UI route is not currently wired)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/matches/Matches.tsx",
+          "operation": "create",
+          "description": "Create a mobile-first Matches screen (to be rendered within MobileScaffold) that uses React Query hooks to load matches and displays English loading/empty/error states; render match rows using only non-identifying fields (e.g., pseudonym/pronouns) and include an “Open chat” action per row. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/chat/EncryptedChatEntry.tsx",
+          "operation": "create",
+          "description": "Create a stub encrypted chat entry screen (used if a real encrypted chat route is not currently wired) that accepts a match identifier via route params and shows English copy indicating chat will open here; ensure no principals are displayed. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the new /matches route to the Matches screen and wire an encrypted chat entry route (e.g., /chat/$matchId) to the stub chat entry page so “Open chat” navigation has a valid destination."
+        }
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "summary": "Add a swipe-style Matching screen that shows one candidate at a time and supports Like/Pass.",
+      "acceptanceCriteria": [
+        "A new route exists for swipe matching (for example, /matches/swipe) and renders inside the existing MobileScaffold.",
+        "The swipe UI supports Like and Pass actions (buttons are acceptable; gesture swipe is optional).",
+        "On Like/Pass, the frontend calls the corresponding backend mutation and then displays the next candidate.",
+        "If there are no more candidates, the screen shows an English empty state and a link/button to view Matches."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/matches/SwipeMatching.tsx",
+          "operation": "create",
+          "description": "Create a mobile-first swipe-style Matching screen that fetches candidates, displays them one-at-a-time, and provides Like/Pass buttons; on Like/Pass call the corresponding React Query mutation then advance to the next candidate; show an English empty state when out of candidates with a clear control to navigate to /matches. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire a /matches/swipe route to the new swipe-style Matching screen so it renders within the existing MobileScaffold."
+        }
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "summary": "Add discoverable navigation to the matching flow and Matches screen from the existing UI.",
+      "acceptanceCriteria": [
+        "The Profile screen includes a clear navigation control labeled “Matches” that routes to the Matches screen.",
+        "The Matches screen includes a clear navigation control labeled “Find matches” (or equivalent) that routes to the swipe matching screen.",
+        "No changes are required to the existing bottom navigation tab set unless necessary; if a new tab is added, it must be labeled in English and remain mobile-friendly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/profile/Profile.tsx",
+          "operation": "modify",
+          "description": "Add a clear “Matches” navigation control on the Profile screen that routes to /matches; keep copy in English and avoid showing any principal identifiers. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/matches/Matches.tsx",
+          "operation": "modify",
+          "description": "Add a clear “Find matches” (or equivalent) navigation control on the Matches screen that routes to /matches/swipe; keep copy in English and mobile-friendly. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-22",
+      "summary": "Add React Query hooks for matching candidates, swipe submission, and matches list with proper invalidation.",
+      "acceptanceCriteria": [
+        "Frontend has dedicated React Query hooks for: fetching candidates, submitting a swipe action, and fetching matches.",
+        "After a swipe that results in a new mutual match, the Matches query is invalidated/refetched so the new match appears without a full reload.",
+        "Hooks follow the existing patterns in frontend/src/hooks/useQueries.ts (enabled guards when actor is unavailable, standard loading/error handling)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add dedicated hooks following existing patterns: a query hook for fetching swipe candidates, a mutation hook for submitting a swipe (Like/Pass), and a query hook for fetching matches; ensure enabled guards when the actor is unavailable; after a swipe mutation, invalidate/refetch the matches query (and candidates if needed) so new mutual matches appear without a full reload."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Align frontend type declarations with the matching-related backend capabilities used by the new hooks (candidates fetch, swipe submission with Like/Pass, matches list), so TypeScript usage in hooks/screens remains accurate after backend updates."
+        }
+      ]
+    },
+    {
+      "id": "REQ-23",
+      "summary": "Ensure matching/matches UI flows are English-only and never render Internet Identity principals.",
+      "acceptanceCriteria": [
+        "No principal values are rendered in any matching/matches UI (including debug output).",
+        "All new user-facing UI text for matching/matches and chat entry points is in English.",
+        "Backend responses used by these screens do not require exposing principals to the frontend beyond what is necessary for internal linking (if an internal identifier is needed, it must not be directly displayed)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/matches/Matches.tsx",
+          "operation": "modify",
+          "description": "Audit and enforce that the Matches screen renders only safe profile fields (e.g., pseudonym/pronouns) and never displays principal identifiers (including in empty/error/debug output); keep all user-facing text in English. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/matches/SwipeMatching.tsx",
+          "operation": "modify",
+          "description": "Audit and enforce that the swipe matching screen never renders principal identifiers (including in empty/error/debug output) and keeps all user-facing text in English; ensure any internal identifier used for navigation is not displayed. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/chat/EncryptedChatEntry.tsx",
+          "operation": "modify",
+          "description": "Ensure the encrypted chat entry screen does not display principals (even if a match identifier is used internally for routing) and uses English-only user-facing text. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

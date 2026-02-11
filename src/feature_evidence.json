@@ -1,0 +1,106 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-new-matches-screen-route-in-the-frontend-that-lists-the-user-s-mutual-matches-and-provides-an-open-chat-action-for-each-match",
+      "featureTitle": "Add a new Matches screen route in the frontend that lists the user’s mutual matches and provides an “Open chat” action for each match.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/chat/EncryptedChatEntry.tsx",
+        "frontend/src/pages/matches/Matches.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-19"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-swipe-style-matching-screen-route-in-the-frontend-that-displays-swipe-candidates-one-at-a-time-and-lets-the-user-like-or-pass-submitting-each-action-to-the-backend-and-advancing-to-the-next-candidate",
+      "featureTitle": "Add a swipe-style Matching screen route in the frontend that displays swipe candidates one at a time and lets the user Like or Pass, submitting each action to the backend and advancing to the next candidate.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/matches/SwipeMatching.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-discoverable-navigation-to-the-matching-flow-and-matches-screen-so-users-can-find-the-encrypted-chat-entry-point-from-within-the-existing-app-ui",
+      "featureTitle": "Add discoverable navigation to the matching flow and Matches screen so users can find the encrypted chat entry point from within the existing app UI.",
+      "files": [
+        "frontend/src/pages/matches/Matches.tsx",
+        "frontend/src/pages/profile/Profile.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-react-query-hooks-for-the-new-matching-and-matches-backend-apis-and-ensure-queries-mutations-invalidate-and-refresh-the-matches-list-appropriately-after-a-mutual-match-is-created",
+      "featureTitle": "Add React Query hooks for the new matching and matches backend APIs and ensure queries/mutations invalidate and refresh the Matches list appropriately after a mutual match is created.",
+      "files": [
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-22"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-all-new-matching-and-matches-ui-and-data-flows-do-not-reveal-internet-identity-principals-in-the-ui-and-keep-user-facing-text-in-english",
+      "featureTitle": "Ensure all new matching and matches UI and data flows do not reveal Internet Identity principals in the UI and keep user-facing text in English.",
+      "files": [
+        "frontend/src/pages/chat/EncryptedChatEntry.tsx",
+        "frontend/src/pages/matches/Matches.tsx",
+        "frontend/src/pages/matches/SwipeMatching.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-23"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
