@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Refresh the app UI with a colorful gradient-forward theme while keeping all existing layouts/routes unchanged, and add simple mobile wrapper branding assets (icon + splash) with usage documentation for Android/iOS packaging.
+**Goal:** Provide real, working in-app download links for Android (APK) and iOS (IPA) on the Downloads screen.
 
 **Planned changes:**
-- Update global theme styling (colors, fonts, CSS variables) to a colorful gradient look with readable contrast in both light and dark mode, without changing any screen layouts or routes.
-- Restyle buttons (primary and outline variants) to match the new gradient theme, including hover/active/focus states, while continuing to use existing Shadcn components (no edits inside `frontend/src/components/ui`).
-- Apply the refreshed styling consistently to shared layout elements (MobileScaffold header visuals and BottomNav active-state styling) without changing their structure, labels, or icons.
-- Generate and add default mobile branding images (app icon and splash screen) under `frontend/public/assets/generated`.
-- Add a short in-repo English doc describing how to use the generated icon and splash assets when building Android (APK) and iOS (IPA) web-view wrappers.
+- Add the mobile wrapper artifacts to `frontend/public/assets/mobile/dist/SafeSpace.apk` and `frontend/public/assets/mobile/dist/SafeSpace.ipa` so they are served at `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`.
+- Update the `/downloads` page to show enabled download buttons when each artifact is present and ensure downloads use the correct filenames.
+- When an artifact is available, display a visible, selectable/copyable direct URL for each artifact on the `/downloads` page.
 
-**User-visible outcome:** The app retains the same navigation and screens but has a more attractive colorful gradient UI, plus included default icon and splash assets with guidance for Android/iOS web-view wrapper builds.
+**User-visible outcome:** Visiting `/downloads` shows working download buttons for Android and iOS, and also shows copyable direct URLs to the APK and IPA files.

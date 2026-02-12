@@ -1,73 +1,37 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T10:29:21.125Z",
+  "generatedAt": "2026-02-12T02:32:52.875Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 4,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-24",
-        "summary": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
+        "id": "REQ-1",
+        "summary": "Add the built mobile wrapper artifacts to the exact static paths expected by the app so the Downloads screen can show real, working download links: `frontend/public/assets/mobile/dist/SafeSpace.apk` and `frontend/public/assets/mobile/dist/SafeSpace.ipa` (served at `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/index.html"
+          "frontend/public/assets/mobile/dist/SafeSpace.apk",
+          "frontend/public/assets/mobile/dist/SafeSpace.ipa",
+          "frontend/src/pages/Downloads.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js",
-          "frontend/index.html"
+          "frontend/src/pages/Downloads.tsx"
         ]
       },
       {
-        "id": "REQ-25",
-        "summary": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
+        "id": "REQ-2",
+        "summary": "On the `/downloads` page, when an artifact is available, display a visible, copyable direct URL for each artifact in addition to the download button (e.g., `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/layout/MobileScaffold.tsx",
-          "frontend/src/components/layout/BottomNav.tsx",
-          "frontend/src/index.css"
+          "frontend/src/pages/Downloads.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/layout/MobileScaffold.tsx",
-          "frontend/src/components/layout/BottomNav.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-26",
-        "summary": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
-        ]
-      },
-      {
-        "id": "REQ-27",
-        "summary": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/README-mobile-wrapper-branding.md",
-          "frontend/index.html",
-          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
-        ],
-        "matchedFiles": [
-          "frontend/README-mobile-wrapper-branding.md",
-          "frontend/index.html",
-          "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "frontend/public/assets/generated/splash-screen.dim_2732x2732.png"
+          "frontend/src/pages/Downloads.tsx"
         ]
       }
     ]
@@ -77,14 +41,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/README-mobile-wrapper-branding.md",
-    "frontend/index.html",
-    "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-    "frontend/public/assets/generated/splash-screen.dim_2732x2732.png",
-    "frontend/src/components/layout/BottomNav.tsx",
-    "frontend/src/components/layout/MobileScaffold.tsx",
-    "frontend/src/index.css",
-    "frontend/tailwind.config.js",
+    "frontend/src/pages/Downloads.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

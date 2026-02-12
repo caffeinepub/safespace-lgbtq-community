@@ -1,109 +1,49 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Gradient theme UI refresh + mobile wrapper branding assets (frontend-only)",
+  "title": "Enable real Android/iOS artifact downloads and direct URLs on /downloads",
   "requirements": [
     {
-      "id": "REQ-24",
-      "summary": "Refresh global UI theme (colors, fonts, buttons) to a colorful gradient-forward style while keeping all existing layouts/routes unchanged.",
+      "id": "REQ-1",
+      "summary": "Ensure the Android APK and iOS IPA artifacts exist at the exact static asset paths so /downloads can show working download links.",
       "acceptanceCriteria": [
-        "All existing routes continue to render with the same structure and navigation behavior (no layout reworks, no route changes).",
-        "Global theme tokens (CSS variables) are updated to reflect a colorful gradient-forward palette while maintaining readability/contrast in both light and dark mode.",
-        "Buttons (including primary and outline variants) visually reflect the new style (e.g., gradient primary, improved hover/active/focus states) without breaking Shadcn component usage.",
-        "All user-facing text introduced or changed remains in English."
+        "`frontend/public/assets/mobile/dist/SafeSpace.apk` exists in the repo/build output and is served at `/assets/mobile/dist/SafeSpace.apk` with an HTTP 200/OK response to a HEAD request.",
+        "`frontend/public/assets/mobile/dist/SafeSpace.ipa` exists in the repo/build output and is served at `/assets/mobile/dist/SafeSpace.ipa` with an HTTP 200/OK response to a HEAD request.",
+        "Visiting `/downloads` shows enabled download buttons for both artifacts (no 'not available yet' instructions).",
+        "Clicking the Android download button downloads a file named `SafeSpace.apk`.",
+        "Clicking the iOS download button downloads a file named `SafeSpace.ipa`."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Update global CSS variables and base styles to a colorful gradient-forward palette for both :root and .dark, ensuring contrast/readability; add theme-level gradient tokens (as CSS variables) and safe global overrides for primary/outline button visuals that remain compatible with shadcn-ui Button styling (without editing frontend/src/components/ui). Verify the component's usage instructions before implementing."
+          "path": "frontend/public/assets/mobile/dist/SafeSpace.apk",
+          "operation": "create",
+          "description": "Add the built Android wrapper artifact at this exact static path so it is served at `/assets/mobile/dist/SafeSpace.apk`."
         },
         {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind theme for the refreshed look (e.g., fontFamily and any non-breaking gradient-related utilities/tokens) while preserving existing class usage so current layouts/routes remain unchanged. Verify the component's usage instructions before implementing."
+          "path": "frontend/public/assets/mobile/dist/SafeSpace.ipa",
+          "operation": "create",
+          "description": "Add the built iOS wrapper artifact at this exact static path so it is served at `/assets/mobile/dist/SafeSpace.ipa`."
         },
         {
-          "path": "frontend/index.html",
+          "path": "frontend/src/pages/Downloads.tsx",
           "operation": "modify",
-          "description": "Optionally add/adjust a single global font inclusion (no layout changes) to support the refreshed typography, keeping all user-facing text in English and avoiding route/layout changes."
+          "description": "Adjust the /downloads UI logic to treat both artifacts as available when the static files exist (as added in this change), ensuring the page shows enabled download buttons (and not the 'not available yet' instructions) for both artifacts."
         }
       ]
     },
     {
-      "id": "REQ-25",
-      "summary": "Apply refreshed gradient styling consistently to MobileScaffold header and BottomNav active state without changing their layout structure.",
+      "id": "REQ-2",
+      "summary": "Show visible, copyable direct URLs for each available mobile artifact on the /downloads page.",
       "acceptanceCriteria": [
-        "The MobileScaffold header remains the same size/structure but visually aligns with the new gradient theme.",
-        "Bottom navigation active tab styling is updated to match the new primary/gradient style while keeping tab labels and icons unchanged.",
-        "No principals or identifying metadata are introduced into the UI as part of styling changes."
+        "When Android artifact is available, the page shows the direct URL string `/assets/mobile/dist/SafeSpace.apk` in the UI.",
+        "When iOS artifact is available, the page shows the direct URL string `/assets/mobile/dist/SafeSpace.ipa` in the UI.",
+        "The displayed URLs can be selected and copied from the page (not only accessible via button click)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/layout/MobileScaffold.tsx",
+          "path": "frontend/src/pages/Downloads.tsx",
           "operation": "modify",
-          "description": "Keep the header DOM structure and sizing intact while updating styling to match the refreshed gradient theme (e.g., gradient overlay/tint, improved title contrast) and ensuring no identifying metadata is introduced."
-        },
-        {
-          "path": "frontend/src/components/layout/BottomNav.tsx",
-          "operation": "modify",
-          "description": "Update only the active/inactive visual styling (colors/background/indicator) to align with the new gradient primary theme while preserving tab icons, labels, and layout structure."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Add any shared CSS helpers (via Tailwind layers) needed to style MobileScaffold header and BottomNav active state consistently with the new gradient theme, without requiring edits to shadcn-ui component sources. Verify the component's usage instructions before implementing."
-        }
-      ]
-    },
-    {
-      "id": "REQ-26",
-      "summary": "Generate simple default mobile branding assets (app icon + splash screen) matching the colorful gradient style.",
-      "acceptanceCriteria": [
-        "New image assets are generated according to the filenames/dimensions listed in imageRequirements.required.",
-        "Assets are purely visual (no sensitive/identifying content) and match a colorful gradient style that fits the app’s existing inclusive theme."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "operation": "create",
-          "description": "Add the generated mobile app icon asset (colorful gradient with a clean abstract mark) as a static frontend asset at this exact path/filename."
-        },
-        {
-          "path": "frontend/public/assets/generated/splash-screen.dim_2732x2732.png",
-          "operation": "create",
-          "description": "Add the generated mobile splash screen asset (colorful gradient background with subtle abstract shapes) as a static frontend asset at this exact path/filename."
-        }
-      ]
-    },
-    {
-      "id": "REQ-27",
-      "summary": "Include generated branding images as static assets and add in-repo documentation for using them in Android/iOS web-view wrapper builds.",
-      "acceptanceCriteria": [
-        "The generated images are present under frontend/public/assets/generated and can be referenced by static path at runtime.",
-        "A short, English README (or equivalent doc file) is added to the repo describing how to apply the icon and splash assets when creating Android/iOS web-view wrapper builds (including which filenames to use).",
-        "No backend changes are required for the branding asset work."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/README-mobile-wrapper-branding.md",
-          "operation": "create",
-          "description": "Create a short English doc explaining how to use frontend/public/assets/generated/app-icon.dim_1024x1024.png and frontend/public/assets/generated/splash-screen.dim_2732x2732.png when packaging Android (APK) and iOS (IPA) web-view wrappers (include which filenames map to icon/splash, and note they are static assets)."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Wire the generated icon into the web build as a static favicon/app icon reference using frontend/public/assets/generated/app-icon.dim_1024x1024.png (no backend changes; keep existing structure/routes unchanged)."
-        },
-        {
-          "path": "frontend/public/assets/generated/app-icon.dim_1024x1024.png",
-          "operation": "modify",
-          "description": "Ensure the final generated icon asset is present at this exact path/filename and matches the documented usage for wrapper packaging (purely visual; no identifying content)."
-        },
-        {
-          "path": "frontend/public/assets/generated/splash-screen.dim_2732x2732.png",
-          "operation": "modify",
-          "description": "Ensure the final generated splash asset is present at this exact path/filename and matches the documented usage for wrapper packaging (purely visual; no identifying content)."
+          "description": "When an artifact is available, render a visible, selectable/copyable direct URL text block for the artifact (using existing shadcn-ui Card/Button/Alert composition). Verify the component's usage instructions before implementing."
         }
       ]
     }

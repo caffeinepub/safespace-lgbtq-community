@@ -1,46 +1,47 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T10:29:21.121Z",
-  "summary": "Gradient-forward theme tokens and typography were updated, BottomNav active styling and MobileScaffold header visuals were refreshed, and a mobile-wrapper branding README plus icon links in index.html were added. However, the required generated image assets are not evidenced in the diff, and an extra (unrequested) header background image asset is referenced.",
+  "generatedAt": "2026-02-12T02:32:52.873Z",
+  "summary": "The diff updates the /downloads UI to check for mobile artifacts, provide download buttons, and add a copy-to-clipboard/direct URL section, but it does not add the required static APK/IPA files at the expected public paths. It also includes unrelated modifications to project metadata/summaries not requested in the BuildRequest.",
   "missing_requirements": [
     {
-      "id": "REQ-26",
-      "requirement": "Create default mobile branding assets (app icon and splash screen) with the specified filenames/dimensions.",
-      "reason": "The diff shows documentation and references to the images, but does not show the actual PNG files being added anywhere in the repo.",
+      "id": "REQ-1",
+      "requirement": "Add the built mobile wrapper artifacts to the exact static paths expected by the app: `frontend/public/assets/mobile/dist/SafeSpace.apk` and `frontend/public/assets/mobile/dist/SafeSpace.ipa` (served at `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
+      "reason": "No new files were added in the diff, and there is no evidence that `frontend/public/assets/mobile/dist/SafeSpace.apk` or `frontend/public/assets/mobile/dist/SafeSpace.ipa` were created under `frontend/public/...`.",
       "evidence": [
-        "frontend/README-mobile-wrapper-branding.md",
-        "frontend/index.html"
+        "File diff summary shows: Added: 0",
+        "ADDED FILES: none"
       ]
     },
     {
-      "id": "REQ-27",
-      "requirement": "Add the generated branding images under frontend/public/assets/generated so they can be referenced by static path at runtime.",
-      "reason": "No files under frontend/public/assets/generated/ are shown as added/modified in the diff summary (only a README and code changes are shown).",
+      "id": "REQ-2",
+      "requirement": "On the `/downloads` page, when an artifact is available, display a visible, copyable direct URL for each artifact in addition to the download button (e.g., `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
+      "reason": "The Downloads page shows a 'Direct URL' section and includes clipboard copy logic, but the diff is truncated before showing the actual rendered URL strings and whether both Android and iOS URLs are displayed and selectable/copyable as required.",
       "evidence": [
-        "frontend/README-mobile-wrapper-branding.md",
-        "frontend/index.html"
+        "frontend/src/pages/Downloads.tsx (truncated): shows `handleCopyUrl` using `navigator.clipboard.writeText(url)` and a 'Direct URL:' label, but the displayed URL content is truncated."
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "MobileScaffold now references an additional generated header background image (/assets/generated/header-bg.dim_1600x400.png) that was not requested in the branding asset requirements.",
-      "reason": "BuildRequest only required two generated images (app icon and splash screen). The diff introduces a third generated asset reference.",
+      "description": "Updates to project tracking/metadata file `project_state.json` marking new feature requests (AR-1/AR-2/AR-3).",
+      "reason": "Not requested by the BuildRequest (which only asks for static artifacts and /downloads UI changes).",
       "evidence": [
-        "frontend/src/components/layout/MobileScaffold.tsx"
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Modification of `frontend-file-summaries.txt` describing many app features/routes not part of this request.",
+      "reason": "Not requested by the BuildRequest; appears to be documentation/summary content unrelated to adding static artifacts and download URLs.",
+      "evidence": [
+        "frontend-file-summaries.txt"
       ]
     }
   ],
-  "confidence": 0.62,
+  "confidence": 0.66,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/README-mobile-wrapper-branding.md",
-    "frontend/index.html",
-    "frontend/src/components/layout/BottomNav.tsx",
-    "frontend/src/components/layout/MobileScaffold.tsx",
-    "frontend/src/index.css",
-    "frontend/tailwind.config.js",
+    "frontend/src/pages/Downloads.tsx",
     "project_state.json"
   ]
 }

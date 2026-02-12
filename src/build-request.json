@@ -1,100 +1,57 @@
 {
   "kind": "build_request",
-  "title": "UI refresh with colorful gradient theme + mobile wrapper branding assets (Android/iOS)",
+  "title": "Provide actual in-app download links for Android APK and iOS IPA",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-24",
-      "text": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
+      "id": "REQ-1",
+      "text": "Add the built mobile wrapper artifacts to the exact static paths expected by the app so the Downloads screen can show real, working download links: `frontend/public/assets/mobile/dist/SafeSpace.apk` and `frontend/public/assets/mobile/dist/SafeSpace.ipa` (served at `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "just refreshed colors/fonts/buttons while keeping the current layout",
-          "Colourfull gardient"
+          "Yes download link"
         ]
       },
       "acceptanceCriteria": [
-        "All existing routes continue to render with the same structure and navigation behavior (no layout reworks, no route changes).",
-        "Global theme tokens (CSS variables) are updated to reflect a colorful gradient-forward palette while maintaining readability/contrast in both light and dark mode.",
-        "Buttons (including primary and outline variants) visually reflect the new style (e.g., gradient primary, improved hover/active/focus states) without breaking Shadcn component usage.",
-        "All user-facing text introduced or changed remains in English."
+        "`frontend/public/assets/mobile/dist/SafeSpace.apk` exists in the repo/build output and is served at `/assets/mobile/dist/SafeSpace.apk` with an HTTP 200/OK response to a HEAD request.",
+        "`frontend/public/assets/mobile/dist/SafeSpace.ipa` exists in the repo/build output and is served at `/assets/mobile/dist/SafeSpace.ipa` with an HTTP 200/OK response to a HEAD request.",
+        "Visiting `/downloads` shows enabled download buttons for both artifacts (no 'not available yet' instructions).",
+        "Clicking the Android download button downloads a file named `SafeSpace.apk`.",
+        "Clicking the iOS download button downloads a file named `SafeSpace.ipa`."
       ]
     },
     {
-      "id": "REQ-25",
-      "text": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
+      "id": "REQ-2",
+      "text": "On the `/downloads` page, when an artifact is available, display a visible, copyable direct URL for each artifact in addition to the download button (e.g., `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "Yes change the ui and make it attractive and creative"
+          "Yes download link"
         ]
       },
       "acceptanceCriteria": [
-        "The MobileScaffold header remains the same size/structure but visually aligns with the new gradient theme.",
-        "Bottom navigation active tab styling is updated to match the new primary/gradient style while keeping tab labels and icons unchanged.",
-        "No principals or identifying metadata are introduced into the UI as part of styling changes."
-      ]
-    },
-    {
-      "id": "REQ-26",
-      "text": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Yes app icon spalash screen",
-          "Simple default designs"
-        ]
-      },
-      "acceptanceCriteria": [
-        "New image assets are generated according to the filenames/dimensions listed in imageRequirements.required.",
-        "Assets are purely visual (no sensitive/identifying content) and match a colorful gradient style that fits the app’s existing inclusive theme."
-      ]
-    },
-    {
-      "id": "REQ-27",
-      "text": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Yes I want android apk and for i phone also"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The generated images are present under frontend/public/assets/generated and can be referenced by static path at runtime.",
-        "A short, English README (or equivalent doc file) is added to the repo describing how to apply the icon and splash assets when creating Android/iOS web-view wrapper builds (including which filenames to use).",
-        "No backend changes are required for the branding asset work."
+        "When Android artifact is available, the page shows the direct URL string `/assets/mobile/dist/SafeSpace.apk` in the UI.",
+        "When iOS artifact is available, the page shows the direct URL string `/assets/mobile/dist/SafeSpace.ipa` in the UI.",
+        "The displayed URLs can be selected and copied from the page (not only accessible via button click)."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (compose existing UI components instead).",
-    "Do not edit any frontend immutable paths listed in SYSTEM_CONTEXT (e.g., frontend/src/hooks/useInternetIdentity.ts(x), frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
-    "Keep the current layout and navigation structure; only refresh styling (colors/fonts/buttons).",
-    "Keep all user-facing text in English."
+    "Do not modify any files under `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, or anything under `frontend/src/components/ui` (compose existing components instead)."
   ],
   "nonGoals": [
-    "Implementing new app features beyond UI styling refresh and branding assets.",
-    "Publishing to Google Play Store or Apple App Store.",
-    "Adding third-party authentication (only Internet Identity is supported).",
-    "Changing backend data models or running state migrations solely for styling/branding changes."
+    "Implementing signed production builds for App Store / Google Play distribution",
+    "Setting up third-party hosting/CDN for artifacts",
+    "Adding backend endpoints to serve or stream artifacts (artifacts must remain static frontend assets)"
   ],
   "imageRequirements": {
-    "required": [
-      "Mobile app icon, colorful gradient with a clean abstract mark (app-icon.dim_1024x1024.png)",
-      "Mobile splash screen, colorful gradient background with subtle abstract shapes (splash-screen.dim_2732x2732.png)"
-    ],
+    "required": [],
     "edits": []
   },
   "userProfileUpdate": {

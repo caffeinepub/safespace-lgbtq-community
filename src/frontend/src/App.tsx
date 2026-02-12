@@ -20,6 +20,7 @@ import ModeratorDashboard from './pages/moderation/ModeratorDashboard';
 import Matches from './pages/matches/Matches';
 import SwipeMatching from './pages/matches/SwipeMatching';
 import EncryptedChatEntry from './pages/chat/EncryptedChatEntry';
+import Downloads from './pages/Downloads';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from 'next-themes';
 
@@ -137,6 +138,12 @@ const encryptedChatRoute = createRoute({
   component: EncryptedChatEntry,
 });
 
+const downloadsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/downloads',
+  component: Downloads,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   confessionsRoute,
@@ -155,6 +162,7 @@ const routeTree = rootRoute.addChildren([
   matchesRoute,
   swipeMatchingRoute,
   encryptedChatRoute,
+  downloadsRoute,
 ]);
 
 const router = createRouter({ routeTree });

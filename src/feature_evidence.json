@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-refresh-the-existing-app-ui-styling-colors-fonts-and-button-styling-to-a-colorful-gradient-look-while-keeping-all-current-screen-layouts-and-routes-unchanged",
-      "featureTitle": "Refresh the existing app UI styling (colors, fonts, and button styling) to a colorful gradient look while keeping all current screen layouts and routes unchanged.",
+      "featureId": "feature-add-the-built-mobile-wrapper-artifacts-to-the-exact-static-paths-expected-by-the-app-so-the-downloads-screen-can-show-real-working-download-links-frontend-public-assets-mobile-dist-safespace-apk-and-frontend-public-assets-mobile-dist-safespace-ipa-served-at-assets-mobile-dist-safespace-apk-and-assets-mobile-dist-safespace-ipa",
+      "featureTitle": "Add the built mobile wrapper artifacts to the exact static paths expected by the app so the Downloads screen can show real, working download links: `frontend/public/assets/mobile/dist/SafeSpace.apk` and `frontend/public/assets/mobile/dist/SafeSpace.ipa` (served at `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
       "files": [
-        "frontend/index.html",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
+        "frontend/src/pages/Downloads.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,17 +16,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-24"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-apply-the-refreshed-gradient-styling-consistently-across-shared-layout-elements-including-the-header-area-in-mobilescaffold-and-the-bottomnav-active-state-styling-without-changing-their-layout-structure",
-      "featureTitle": "Apply the refreshed gradient styling consistently across shared layout elements, including the header area in MobileScaffold and the BottomNav active-state styling, without changing their layout structure.",
+      "featureId": "feature-on-the-downloads-page-when-an-artifact-is-available-display-a-visible-copyable-direct-url-for-each-artifact-in-addition-to-the-download-button-e-g-assets-mobile-dist-safespace-apk-and-assets-mobile-dist-safespace-ipa",
+      "featureTitle": "On the `/downloads` page, when an artifact is available, display a visible, copyable direct URL for each artifact in addition to the download button (e.g., `/assets/mobile/dist/SafeSpace.apk` and `/assets/mobile/dist/SafeSpace.ipa`).",
       "files": [
-        "frontend/src/components/layout/BottomNav.tsx",
-        "frontend/src/components/layout/MobileScaffold.tsx",
-        "frontend/src/index.css"
+        "frontend/src/pages/Downloads.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -39,44 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-25"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-simple-default-mobile-branding-assets-for-a-web-view-wrapper-app-an-app-icon-and-splash-screen-designs-suitable-for-android-and-ios",
-      "featureTitle": "Create simple default mobile branding assets for a web-view wrapper app: an app icon and splash screen designs suitable for Android and iOS.",
-      "files": [],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-26"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-the-newly-generated-mobile-branding-images-to-the-frontend-as-static-assets-under-frontend-public-assets-generated-and-document-in-repo-how-they-should-be-used-for-android-apk-and-ios-ipa-web-view-wrapper-packaging",
-      "featureTitle": "Add the newly generated mobile branding images to the frontend as static assets under frontend/public/assets/generated and document (in-repo) how they should be used for Android (APK) and iOS (IPA) web-view wrapper packaging.",
-      "files": [
-        "frontend/README-mobile-wrapper-branding.md",
-        "frontend/index.html"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-27"
+        "REQ-2"
       ],
       "confidence": "high"
     }

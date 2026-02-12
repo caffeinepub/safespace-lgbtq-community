@@ -7,7 +7,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { ArrowLeft, HelpCircle, Compass } from 'lucide-react';
+import { ArrowLeft, HelpCircle, Compass, Download } from 'lucide-react';
 import { toast } from 'sonner';
 import type { UserProfile } from '../backend';
 
@@ -116,6 +116,10 @@ export default function Settings() {
           <Button variant="outline" className="w-full justify-start" onClick={handleReplayQuickTour}>
             <Compass className="w-4 h-4 mr-2" />
             Replay Quick Tour
+          </Button>
+          <Button variant="outline" className="w-full justify-start" onClick={() => navigate({ to: '/downloads' })}>
+            <Download className="w-4 h-4 mr-2" />
+            Mobile App Downloads
           </Button>
           <Button variant="outline" className="w-full justify-start" onClick={resetCompliance}>
             View Safety Information
